@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Weather API</title>
+</head>
+<body>
+<br>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">🌤 Weather Checker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home🏠</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us 📞</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<center><h1><u>Check Your City Weather </u> 🌦 </h1></center>
+<br>
+<center>
+    <form method="post" class="form-control bg-dark"><br>
+        {% csrf_token %}
+        <div class="col-auto">
+            <input type="text" class="form-control" name="city" placeholder="Search Your City.. 🌆">
+        </div>
+        <div class="col-auto"><br>
+            <button type="submit" class="btn btn-secondary mb-3">Search 🔍</button>
+        </div>
+    </form>
+</center>
+<br>
+{% if country_code and coordinate and temp and pressure and humidity %}
+<center><h4><u>Your {{ city_name }} City Current Weather</u> 👇</h4></center>
+<br>
+<div class="card-group">
+    <br>
+    <div class="col d-flex justify-content-center">
+        <div class=" card text-white bg-dark mb-6">
+            <div class="card-body">
+                <h4><span class="badge badge-primary">City Name :- </span> {{ city_name }} 🌆 </h4>
+                <h4><span class="badge badge-primary">Country Code :- </span> {{ country_code }} </h4>
+                <h4><span class="badge badge-primary">Current Date & Time⌚ :- </span> {{ curt }} </h4>
+                <h4><span class="badge badge-primary">Timezone Location :- </span> {{ tl }} </h4>
+                <h4><span class="badge badge-primary">Temperature :- </span> {{ temp }} 🌡 </h4>
+                <h4><span class="badge badge-primary">Coordinates [X,Y] :- </span> {{ coordinate}} </h4>
+                <h4><span class="badge badge-primary">Pressure :- </span> {{ pressure }} </h4>
+                <h4><span class="badge badge-primary">Humidity :- </span> {{ humidity }} </h4>
+                <h4><span class="badge badge-primary">Forecast :- </span> {{ main }} </h4>
+                <h4><span class="badge badge-primary">Description :- </span> {{ description }} </h4>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<br><br>
+<nav class="navbar-dark bg-dark">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link">🌤 Weather Checker</a>
+        </li>
+    </ul>
+</nav>
+<br>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+</html>
